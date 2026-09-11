@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in | AccidentGuard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="auth-body">
+    <main class="auth-layout">
+        <section class="auth-intro">
+            <a class="brand auth-brand" href="{{ url_for('login') }}"><span class="brand-mark">✚</span><span>Accident<span>Guard</span></span></a>
+            <div class="intro-copy"><p class="eyebrow">EMERGENCY RESPONSE CONSOLE</p><h1>Helping teams respond when every second matters.</h1><p>Secure access to the AI Accident Detection & Emergency Alert System.</p></div>
+        </section>
+        <section class="auth-panel">
+            <form class="auth-card" method="post" novalidate>
+                <p class="eyebrow">SECURE ACCESS</p><h2>Welcome back</h2><p class="form-subtitle">Sign in to access your monitoring dashboard.</p>
+                {% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<div class="flash {{ category }}" role="alert">{{ message }}</div>{% endfor %}{% endwith %}
+                <label for="email">Email address</label><input id="email" name="email" type="email" value="{{ request.form.get('email', '') }}" autocomplete="email" required autofocus>
+                <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required>
+                <button class="auth-button" type="submit">Sign in <span>→</span></button>
+                <p class="setup-link">First time here? <a href="{{ url_for('setup_admin') }}">Set up the first admin account</a></p>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

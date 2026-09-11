@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload video | AccidentGuard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="upload-body">
+    <main class="upload-page">
+        <a class="brand upload-brand" href="{{ url_for('home') }}"><span class="brand-mark">✚</span><span>Accident<span>Guard</span></span></a>
+        <section class="upload-card"><a class="back-link" href="{{ url_for('home') }}">← Back to dashboard</a><p class="eyebrow">VIDEO INPUT</p><h1>Upload or record traffic video</h1><p class="form-subtitle">Choose a saved video, connect to a camera, or record directly in this page.</p>
+            {% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<div class="flash {{ category }}" role="alert">{{ message }}</div>{% endfor %}{% endwith %}
+            <form id="uploadForm" method="post" enctype="multipart/form-data">
+                <label class="file-drop" id="fileDrop" for="video"><span aria-hidden="true">⇧</span><strong>Choose a video file</strong><small>MP4, MOV, M4V, WebM, or AVI · Maximum 500 MB</small><input id="video" name="video" type="file" accept="video/*,.mp4,.mov,.m4v,.webm,.avi" required></label>
+                <button id="cameraPicker" class="secondary-button" type="button">Connect to camera</button>
+                <button id="openRecorder" class="secondary-button" type="button">Record from camera</button>
+                <p id="selectedFile" class="selected-file" aria-live="polite">No file selected</p>
+                <div class="camera-recorder" id="cameraRecorder" hidden>
+                    <video id="cameraPreview" autoplay muted playsinline></video>
+                    <div class="camera-actions"><button id="startRecording" class="secondary-button" type="button">Start recording</button><button id="stopRecording" class="secondary-button" type="button" disabled>Stop recording</button></div>
+                    <p id="cameraStatus" class="selected-file" aria-live="polite"></p>
+                </div>
+                <button class="auth-button" id="uploadButton" type="submit">Upload and preview <span>→</span></button>
+            </form>
+        </section>
+    </main><script src="{{ url_for('static', filename='js/upload-video.js') }}"></script>
+</body>
+</html>

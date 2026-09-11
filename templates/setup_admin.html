@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set up administrator | AccidentGuard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="auth-body">
+    <main class="auth-layout"><section class="auth-intro"><a class="brand auth-brand" href="{{ url_for('login') }}"><span class="brand-mark">✚</span><span>Accident<span>Guard</span></span></a><div class="intro-copy"><p class="eyebrow">INITIAL CONFIGURATION</p><h1>Create the first administrator account.</h1><p>This page closes automatically once an admin account has been created.</p></div></section>
+        <section class="auth-panel"><form class="auth-card" method="post" novalidate><p class="eyebrow">ADMIN SETUP</p><h2>Get started</h2><p class="form-subtitle">Use a strong password. It will be stored only as a secure hash.</p>
+            {% with messages = get_flashed_messages(with_categories=true) %}{% for category, message in messages %}<div class="flash {{ category }}" role="alert">{{ message }}</div>{% endfor %}{% endwith %}
+            <label for="full_name">Full name</label><input id="full_name" name="full_name" value="{{ request.form.get('full_name', '') }}" autocomplete="name" required autofocus>
+            <label for="email">Email address</label><input id="email" name="email" type="email" value="{{ request.form.get('email', '') }}" autocomplete="email" required>
+            <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="new-password" required><label for="confirm_password">Confirm password</label><input id="confirm_password" name="confirm_password" type="password" autocomplete="new-password" required>
+            <button class="auth-button" type="submit">Create administrator <span>→</span></button><p class="setup-link"><a href="{{ url_for('login') }}">Back to sign in</a></p>
+        </form></section>
+    </main>
+</body>
+</html>

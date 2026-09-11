@@ -1,0 +1,21 @@
+# Local credentials and Flask runtime state
+.env
+*.env
+!.env.example
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Generated media, logs, and downloaded/trained model artifacts
+videos/
+snapshots/
+models/*.pt
+server_probe.log
+server_probe.err
+tmp*/
+
+# Local datasets can be large and may contain private footage
+dataset/
