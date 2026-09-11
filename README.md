@@ -54,6 +54,11 @@ Press `Ctrl+C` in PowerShell to stop the server.
    Get-Content .\database\accident_detection.sql | mysql -u root -p
    ```
    Enter the MySQL password when prompted. This creates the `accident_detection` database, all tables, relationships, indexes, and the four reference severity levels. It does not add accident, detection, alert, or notification records.
+
+   The repository also includes `database/accident_detection_dump.sql`, a complete snapshot of the project database (schema + the seeded administrator account + the reference severity levels). To restore everything in one step instead of the schema-only file above:
+   ```powershell
+   Get-Content .\database\accident_detection_dump.sql | mysql -u root -p
+   ```
 3. Configure this application's connection settings in the same PowerShell window. Replace the example values with your real MySQL credentials:
    ```powershell
    $env:MYSQL_HOST = "localhost"
